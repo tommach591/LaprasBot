@@ -14,7 +14,7 @@ module.exports = {
             var id = Math.floor(Math.random() * 905) + 1;
             var image = `https://assets.pokemon.com/assets/cms2/img/pokedex/detail/${zeroPad(id, 3)}.png`;
     
-            pkmnMsg.setColor('FFF000');
+            pkmnMsg.setColor('64ECFF');
             pkmnMsg.setTitle(`Pokemon of the Day! - #${id} ${pokemon.getName(id)}`);
             pkmnMsg.setImage(image);
             message.channel.send({ embeds: [pkmnMsg] });
