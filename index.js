@@ -22,13 +22,13 @@ client.once('ready', () => {
 });
 
 client.on('messageCreate', message => { 
-    console.log("Something!");
-    var sender = message.author;
-
     if (!message.content.startsWith(prefix) || message.author.bot) {
+        console.log(message.content);
+        console.log(message.author.bot);
         return;
     }
 
+    var sender = message.author;
     const args = message.content.slice(prefix.length).split(/ +/);
     const command = args.shift().toLowerCase();
 
@@ -39,6 +39,10 @@ client.on('messageCreate', message => {
         default:
             break;
     }
+});
+
+process.on('unhandledRejection', (reason, promise) => {
+    console.log(reason);
 });
 
 client.login(process.env.DISCORD_TOKEN); // Last Line in File
