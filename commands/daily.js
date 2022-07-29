@@ -8,15 +8,32 @@ module.exports = {
 
         const zeroPad = (num, places) => String(num).padStart(places, '0');
 
+        let imageExists = (image_url) => {
+            var http = new XMLHttpRequest();
+            http.open('HEAD', image_url, false);
+            http.send();
+            return http.status != 404;
+        }
+
         let newDaily = () =>
         {
             const pkmnMsg = new EmbedBuilder();
-            var id = Math.floor(Math.random() * 905) + 1;
-            var image = `https://assets.pokemon.com/assets/cms2/img/pokedex/detail/${zeroPad(id, 3)}.png`;
+            //var id = Math.floor(Math.random() * 905) + 1;
+            var id = 666;
+            var images = [`https://assets.pokemon.com/assets/cms2/img/pokedex/detail/${zeroPad(id, 3)}.png`];
+
+            var i = 2;
+            var form = `https://assets.pokemon.com/assets/cms2/img/pokedex/detail/${zeroPad(id, 3)}_f${i}.png`;
+            while (imageExists(form))
+            {
+                images.push(form);
+                i++;
+                form = `https://assets.pokemon.com/assets/cms2/img/pokedex/detail/${zeroPad(id, 3)}_f${i}.png`;
+            }
     
             pkmnMsg.setColor('64ECFF');
             pkmnMsg.setTitle(`Pokemon of the Day! - #${id} ${pokemon.getName(id)}`);
-            pkmnMsg.setImage(image);
+            pkmnMsg.setImage(images[Math.floor(Math.random() * images.length)]);
             message.channel.send({ embeds: [pkmnMsg] });
         }
 
