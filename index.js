@@ -13,7 +13,6 @@ const client = new Discord.Client({
 const prefix = '!pk ';
 const fs = require('fs');
 var masterData = JSON.parse("{}");
-masterData["daily"] = true;
 
 client.commands = new Discord.Collection();
 const commandFiles = fs.readdirSync('./commands/').filter(file => file.endsWith('.js'));

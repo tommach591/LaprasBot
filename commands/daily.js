@@ -37,10 +37,10 @@ module.exports = {
             message.channel.send({ embeds: [pkmnMsg] });
         }
 
-        if (masterData["daily"])
+        if (!masterData[userid])
         {
             newDaily();
-            masterData["daily"] = false;
+            masterData[userid] = true;
         }
         else
         {
