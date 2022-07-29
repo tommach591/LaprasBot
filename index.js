@@ -29,9 +29,7 @@ client.once('ready', () => {
 });
 
 client.on('messageCreate', message => { 
-    if (!message.content.startsWith(prefix) || message.author.bot) {
-        return;
-    }
+    if (!message.content.startsWith(prefix) || message.author.bot) return;
 
     var sender = message.author;
     const args = message.content.slice(prefix.length).split(/ +/);
