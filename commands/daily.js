@@ -2,7 +2,7 @@ module.exports = {
     name: 'daily',
     description: "Get a daily Pokemon to draw!",
 
-    execute(message) {
+    execute(message, userid) {
         const { MessageEmbed } = require('discord.js');
         const embedMsg = new MessageEmbed();
         embedMsg.setColor('00FF00');

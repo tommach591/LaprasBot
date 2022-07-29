@@ -30,8 +30,12 @@ client.on('messageCreate', message => {
     const command = args.shift().toLowerCase();
 
     switch(command) {
+        case 'daily':
+            console.log("Daily!");
+            client.commands.get('daily').execute(message, sender.id);
+            break;
         default:
-            client.commands.get('daily').execute(message);
+            console.log("Default!");
             break;
     }
 });
