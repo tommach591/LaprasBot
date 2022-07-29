@@ -1,8 +1,6 @@
 const Discord = require("discord.js");
-
 const AWS = require("aws-sdk");
 
-const { MessageEmbed } = require('discord.js');
 const client = new Discord.Client({ 
     intents: [
         Discord.GatewayIntentBits.Guilds,
@@ -14,7 +12,7 @@ const client = new Discord.Client({
 
 const prefix = '!pk ';
 const fs = require('fs');
-var daily = true;
+const daily = true;
 
 client.commands = new Discord.Collection();
 const commandFiles = fs.readdirSync('./commands/').filter(file => file.endsWith('.js'));
