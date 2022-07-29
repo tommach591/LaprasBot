@@ -22,6 +22,8 @@ client.once('ready', () => {
 });
 
 client.on('messageCreate', message => { 
+    console.log("Something!");
+
     if (!message.content.startsWith(prefix) || message.author.bot) {
         return;
     }
@@ -31,11 +33,9 @@ client.on('messageCreate', message => {
 
     switch(command) {
         case 'daily':
-            console.log("Daily!");
             client.commands.get('daily').execute(message, sender.id);
             break;
         default:
-            console.log("Default!");
             break;
     }
 });
