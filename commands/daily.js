@@ -14,8 +14,7 @@ module.exports = {
         var image = `https://assets.pokemon.com/assets/cms2/img/pokedex/detail/${zeroPad(id, 3)}.png`;
 
         embedMsg.setColor('FFF000');
-        embedMsg.setTitle('Pokemon of the Day!');
-        embedMsg.setDescription(`#${id} ${pokemon.getName(id)}`);
+        embedMsg.setTitle(`Pokemon of the Day! - #${id} ${pokemon.getName(id)}`);
         embedMsg.setImage(image);
         message.channel.send({ embeds: [embedMsg] });
     }
