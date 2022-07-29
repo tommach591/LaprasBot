@@ -22,6 +22,7 @@ module.exports = {
 
         if (daily)
         {
+            daily = false;
             newDaily();
         }
         else
