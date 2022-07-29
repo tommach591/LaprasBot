@@ -30,8 +30,6 @@ client.once('ready', () => {
 
 client.on('messageCreate', message => { 
     if (!message.content.startsWith(prefix) || message.author.bot) {
-        console.log(message.content);
-        console.log(message.author.bot);
         return;
     }
 
