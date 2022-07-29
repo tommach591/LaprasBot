@@ -13,9 +13,8 @@ const client = new Discord.Client({
 }); 
 
 const prefix = '!pk ';
-
 const fs = require('fs');
-const { send } = require("process");
+var daily = true;
 
 client.commands = new Discord.Collection();
 const commandFiles = fs.readdirSync('./commands/').filter(file => file.endsWith('.js'));
@@ -37,7 +36,7 @@ client.on('messageCreate', message => {
 
     switch(command) {
         case 'daily':
-            client.commands.get('daily').execute(message, sender.id);
+            client.commands.get('daily').execute(message, sender.id, daily);
             break;
         default:
             break;
