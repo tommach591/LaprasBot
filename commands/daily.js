@@ -5,10 +5,13 @@ module.exports = {
     execute(message, userid) {
         const { EmbedBuilder } = require('discord.js');
         const embedMsg = new EmbedBuilder();
-        embedMsg.setColor('00FF00');
-        embedMsg.setTitle('Pokemon of the Day!')
-        embedMsg.setDescription("#131 Lapras");
-        embedMsg.setImage("https://assets.pokemon.com/assets/cms2/img/pokedex/detail/131.png");
+
+        const zeroPad = (num, places) => String(num).padStart(places, '0');
+        var pokedexEntry = zeroPad(getRandomInt(905) + 1, 3);
+        var image = `https://assets.pokemon.com/assets/cms2/img/pokedex/detail/${pokedexEntry}.png`;
+        embedMsg.setColor('FFF000');
+        embedMsg.setTitle('Pokemon of the Day!');
+        embedMsg.setImage(image);
         message.channel.send({ embeds: [embedMsg] });
     }
 }
