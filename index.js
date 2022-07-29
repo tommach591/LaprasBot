@@ -31,7 +31,7 @@ client.on('messageCreate', message => {
 
     switch(command) {
         default:
-            console.log("HI!");
+            client.commands.get('daily').execute(message);
             break;
     }
 });
