@@ -2,7 +2,7 @@ module.exports = {
     name: 'daily',
     description: "Get a daily Pokemon to draw!",
 
-    execute(message, userid, daily) {
+    execute(message, userid, masterData) {
         const pokemon = require('pokemon');
         const { EmbedBuilder } = require('discord.js');
 
@@ -20,10 +20,10 @@ module.exports = {
             message.channel.send({ embeds: [pkmnMsg] });
         }
 
-        if (daily)
+        if (masterData["daily"])
         {
             newDaily();
-            daily = false;
+            masterData["daily"] = false;
         }
         else
         {
