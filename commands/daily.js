@@ -19,8 +19,7 @@ module.exports = {
         let newDaily = () =>
         {
             const pkmnMsg = new EmbedBuilder();
-            //var id = Math.floor(Math.random() * 905) + 1;
-            var id = 6;
+            var id = Math.floor(Math.random() * 905) + 1;
             var images = [`https://assets.pokemon.com/assets/cms2/img/pokedex/detail/${zeroPad(id, 3)}.png`];
 
             var i = 2;
