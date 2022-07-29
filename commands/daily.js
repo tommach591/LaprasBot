@@ -6,8 +6,9 @@ module.exports = {
         const { EmbedBuilder } = require('discord.js');
         const embedMsg = new EmbedBuilder();
         embedMsg.setColor('00FF00');
-        embedMsg.setDescription("Working!");
-        embedMsg.setImage("https://img.pokemondb.net/artwork/avif/lapras.avif");
+        embedMsg.setTitle('Pokemon of the Day!')
+        embedMsg.setDescription("#131 Lapras");
+        embedMsg.setImage("https://assets.pokemon.com/assets/cms2/img/pokedex/detail/131.png");
         message.channel.send({ embeds: [embedMsg] });
     }
 }
