@@ -23,6 +23,7 @@ client.once('ready', () => {
 
 client.on('messageCreate', message => { 
     console.log("Something!");
+    var sender = message.author;
 
     if (!message.content.startsWith(prefix) || message.author.bot) {
         return;
