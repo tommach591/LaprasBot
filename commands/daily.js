@@ -7,6 +7,7 @@ module.exports = {
         const embedMsg = new MessageEmbed();
         embedMsg.setColor('00FF00');
         embedMsg.setDescription("Working!");
+        console.log("Working!");
         message.channel.send({ embeds: [embedMsg] });
     }
 }
