@@ -12,7 +12,7 @@ const client = new Discord.Client({
     ] 
 }); 
 
-const prefix = '!iv ';
+const prefix = '!pk ';
 
 const fs = require('fs');
 const { send } = require("process");
