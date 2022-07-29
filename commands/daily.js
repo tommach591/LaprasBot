@@ -7,7 +7,7 @@ module.exports = {
         const embedMsg = new EmbedBuilder();
         embedMsg.setColor('00FF00');
         embedMsg.setDescription("Working!");
-        console.log("Working!");
+        embedMsg.setImage("https://img.pokemondb.net/artwork/avif/lapras.avif");
         message.channel.send({ embeds: [embedMsg] });
     }
 }
