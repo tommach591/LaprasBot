@@ -5,6 +5,7 @@ module.exports = {
     execute(message, userid, masterData) {
         const pokemon = require('pokemon');
         const { EmbedBuilder } = require('discord.js');
+        const XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
 
         const zeroPad = (num, places) => String(num).padStart(places, '0');
 
