@@ -29,8 +29,7 @@ module.exports = {
 
             while (selectedID == "" || pokemon[userid].includes(selectedID))
             {
-                //var id = Math.floor(Math.random() * 905) + 1;
-                var id = 486;
+                var id = Math.floor(Math.random() * 905) + 1;
                 var images = [`${zeroPad(id, 3)}`];
 
                 var i = 2;
