@@ -2,8 +2,8 @@ module.exports = {
     name: 'daily',
     description: "Get a daily Pokemon to draw!",
 
-    execute(message, userid, masterData) {
-        const pokemon = require('pokemon');
+    execute(message, userid, pokemon, dailies) {
+        const pkmn = require('pokemon');
         const { EmbedBuilder } = require('discord.js');
         const XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
 
@@ -19,28 +19,66 @@ module.exports = {
         let newDaily = () =>
         {
             const pkmnMsg = new EmbedBuilder();
-            var id = Math.floor(Math.random() * 905) + 1;
-            var images = [`https://assets.pokemon.com/assets/cms2/img/pokedex/detail/${zeroPad(id, 3)}.png`];
+            var selectedID = "";
 
-            var i = 2;
-            var form = `https://assets.pokemon.com/assets/cms2/img/pokedex/detail/${zeroPad(id, 3)}_f${i}.png`;
-            while (imageExists(form))
+            if (!pokemon[userid])
             {
-                images.push(form);
-                i++;
-                form = `https://assets.pokemon.com/assets/cms2/img/pokedex/detail/${zeroPad(id, 3)}_f${i}.png`;
+                pokemon[userid] = [];
+            }
+
+            while (selectedID != "" && !pokemon[userid].includes(selectedID))
+            {
+                var id = Math.floor(Math.random() * 905) + 1;
+                var images = [`${zeroPad(id, 3)}`];
+
+                var i = 2;
+                var currID = `${zeroPad(id, 3)}_f${i}`;
+                var form = `https://assets.pokemon.com/assets/cms2/img/pokedex/detail/${currID}.png`;
+                while (imageExists(form))
+                {
+                    images.push(currID);
+                    i++;
+                    currID = `${zeroPad(id, 3)}_f${i}`;
+                    form = `https://assets.pokemon.com/assets/cms2/img/pokedex/detail/${currID}.png`;
+                }
+                var selectedID = images[Math.floor(Math.random() * images.length)];
             }
     
             pkmnMsg.setColor('64ECFF');
-            pkmnMsg.setTitle(`Pokemon of the Day! - #${id} ${pokemon.getName(id)}`);
-            pkmnMsg.setImage(images[Math.floor(Math.random() * images.length)]);
+            pkmnMsg.setTitle(`Pokemon of the Day! - #${id} ${pkmn.getName(id)}`);
+            pkmnMsg.setImage(`https://assets.pokemon.com/assets/cms2/img/pokedex/detail/${selectedID}.png`);
             message.channel.send({ embeds: [pkmnMsg] });
+
+            pokemon[userid].push(selectedID);
+
+            const s3 = new AWS.S3({
+                accessKeyId: process.env.ACCESS_KEY_ID,
+                secretAccessKey: process.env.SECRET_ACCESS_KEY,
+                Bucket: process.env.BUCKET
+            });
+            
+            const pokemonParams = {
+                Bucket: process.env.BUCKET,
+                Key: "storage/pokemon.json"
+            };
+
+            s3.putObject({
+                Bucket: process.env.BUCKET,
+                Key: pokemonParams.Key,
+                Body: JSON.stringify(pokemon),
+                ContentType: "application/json"},
+                function (err, data) {
+                    if (err) {
+                        console.log(JSON.stringify(err));
+                    }
+                }
+            );
         }
 
-        if (!masterData[userid])
+        if (!dailies[userid])
         {
             newDaily();
-            masterData[userid] = true;
+            dailies[userid] = true;
         }
         else
         {
