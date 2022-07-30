@@ -26,7 +26,7 @@ module.exports = {
                 pokemon[userid] = [];
             }
 
-            while (selectedID != "" && !pokemon[userid].includes(selectedID))
+            while (selectedID == "" || pokemon[userid].includes(selectedID))
             {
                 var id = Math.floor(Math.random() * 905) + 1;
                 var images = [`${zeroPad(id, 3)}`];
