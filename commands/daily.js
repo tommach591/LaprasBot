@@ -52,8 +52,11 @@ module.exports = {
             pkmnMsg.setImage(`https://assets.pokemon.com/assets/cms2/img/pokedex/detail/${selectedID}.png`);
             message.channel.send({ embeds: [pkmnMsg] });
 
-            pokemon[userid].push(selectedID);
-            pokemon[userid].sort((a, b) => a - b);
+            if (!pokemon[userid].includes(selectedID))
+            {
+                pokemon[userid].push(selectedID);
+                pokemon[userid].sort((a, b) => a - b);
+            }
 
             const s3 = new AWS.S3({
                 accessKeyId: process.env.ACCESS_KEY_ID,
