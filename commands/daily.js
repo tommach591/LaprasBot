@@ -21,14 +21,14 @@ module.exports = {
         {
             const pkmnMsg = new EmbedBuilder();
             var selectedID = "";
-            var i = 0;
+            var rerolls = 0;
 
             if (!pokemon[userid])
             {
                 pokemon[userid] = [];
             }
 
-            while ((selectedID == "" || pokemon[userid].includes(selectedID)) && i < 30)
+            while ((selectedID == "" || pokemon[userid].includes(selectedID)) && rerolls < 30)
             {
                 var id = Math.floor(Math.random() * 905) + 1;
                 var images = [`${zeroPad(id, 3)}`];
@@ -44,7 +44,8 @@ module.exports = {
                     form = `https://assets.pokemon.com/assets/cms2/img/pokedex/detail/${currID}.png`;
                 }
                 var selectedID = images[Math.floor(Math.random() * images.length)];
-                i++;
+                rerolls++;
+                console.log(rerolls);
             }
     
             pkmnMsg.setColor('64ECFF');
