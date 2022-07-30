@@ -28,7 +28,7 @@ module.exports = {
                 pokemon[userid] = [];
             }
 
-            while ((selectedID == "" || pokemon[userid].includes(selectedID)) && rerolls < 30)
+            while ((selectedID == "" || pokemon[userid].includes(selectedID)) && rerolls < 50)
             {
                 var id = Math.floor(Math.random() * 905) + 1;
                 var images = [`${zeroPad(id, 3)}`];
@@ -45,7 +45,6 @@ module.exports = {
                 }
                 var selectedID = images[Math.floor(Math.random() * images.length)];
                 rerolls++;
-                console.log(rerolls);
             }
     
             pkmnMsg.setColor('64ECFF');
