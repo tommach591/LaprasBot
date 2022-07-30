@@ -29,7 +29,8 @@ module.exports = {
 
             while (selectedID == "" || pokemon[userid].includes(selectedID))
             {
-                var id = Math.floor(Math.random() * 905) + 1;
+                //var id = Math.floor(Math.random() * 905) + 1;
+                var id = 486;
                 var images = [`${zeroPad(id, 3)}`];
 
                 var i = 2;
@@ -51,6 +52,7 @@ module.exports = {
             message.channel.send({ embeds: [pkmnMsg] });
 
             pokemon[userid].push(selectedID);
+            pokemon[userid].sort((a, b) => a - b);
 
             const s3 = new AWS.S3({
                 accessKeyId: process.env.ACCESS_KEY_ID,
