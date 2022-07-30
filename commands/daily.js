@@ -4,6 +4,7 @@ module.exports = {
 
     execute(message, userid, pokemon, dailies) {
         const pkmn = require('pokemon');
+        const AWS = require("aws-sdk");
         const { EmbedBuilder } = require('discord.js');
         const XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
 
